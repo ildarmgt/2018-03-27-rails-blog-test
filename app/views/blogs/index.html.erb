@@ -1,9 +1,11 @@
-<h1> Landing page </h1>
+<h1> Recent Blogs </h1>
 
 <% Blog.all.reverse.each do |p| %>
+
+  <%= p.created_at.to_formatted_s(:long) %><br>
   <%= p.content %>
   <br><br>
-
+  
 
 
 

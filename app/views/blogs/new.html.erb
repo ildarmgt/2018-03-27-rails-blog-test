@@ -1,1 +1,9 @@
 <h1>new blog</h1>
+
+<%= form_for @new_blog do |f| %>
+
+  
+  <%= f.text_field :content %>
+  <%= f.submit %>
+
+<% end %>
