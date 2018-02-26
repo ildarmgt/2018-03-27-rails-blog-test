@@ -24,6 +24,10 @@ class BlogsController < ApplicationController
   end
 
   def show
+    page_user_id = params[:id]
+    
+    @page_user = User.find_by_id(page_user_id)
+
 
   end
 

@@ -1,6 +1,6 @@
 <h1> Recent Blogs </h1>
 
-<% Blog.all.reverse.each do |ea_post| %>
+<% @page_user.blogs.all.reverse.each do |ea_post| %>
 
   <%= ea_post.user.username %> / 
   <%= ea_post.created_at.to_formatted_s(:long) %><br>
