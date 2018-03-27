@@ -1,0 +1,66 @@
+.main__user_edit {
+  width: 60vw;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.main__user_new__title,
+.main__user_edit__title {
+  @include page_title;
+  margin-bottom: 2vmax;
+}
+
+.field {
+  text-align: left;
+  margin-bottom: 1vmax;
+  // display: inline-block;
+}
+
+.mylabel {
+  width: 35%;
+  margin-right: 5%;
+  display: inline-block;
+  text-align: right;
+  float: left;
+}
+
+.myfield {
+  @include regular_textfield;
+  color: $dark_color;
+  text-align: center;
+  width: 55%;
+  display: inline-block; 
+  // float: right;
+}
+
+.myfieldlight {
+  @include light_text(1.2vmax);
+  display: block;
+  text-align: right;
+  margin-right: 5vmax;
+  margin-top: 1vmax;
+}
+
+.main__user_edit__btnUpdate {
+  @include button_general;
+}
+
+.main__user_edit__btnDelete {
+  margin-top: 3vmax;
+  margin-bottom: 3vmax;
+  @include button_danger;
+}
+
+.main__user_edit__btnUpdate:active,
+.main__user_edit__btnDelete:active {
+  @include button_general_pressed;
+}
+
+.devise_errors {
+  background-color: $danger_color;
+  color: $background_color;
+  padding: 0.5vmax;
+  padding-bottom: 2vmax;
+  margin-bottom: 1vmax;
+  border-radius: 2vmax;
+}

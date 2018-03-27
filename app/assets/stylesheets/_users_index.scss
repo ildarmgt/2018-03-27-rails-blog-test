@@ -1,0 +1,21 @@
+.main__people {
+  text-align: center;
+}
+
+.main__people__title {
+  @include page_title;
+}
+
+.main__people__user {
+  @include general_text;
+  background-color: $dark_color;
+  color: $background_color;
+  padding: 0.5vmax 1vmax;
+  border-radius: 1.5vmax;
+  margin: 1vmax;
+}
+
+.main__people__user:hover {
+  background-color: $bright_highlight_color;
+  color: $quiet_color;
+}

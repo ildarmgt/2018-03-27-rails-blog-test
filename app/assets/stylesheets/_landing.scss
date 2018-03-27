@@ -1,0 +1,21 @@
+.main__landing {
+  text-align: center;
+}
+
+.main__landing__spacer1 {
+  @include large_spacer(5vmax);
+}
+
+.main__landing__title {
+ @include page_title(10vw);
+ color: $dark_color;
+}
+
+.main__landing__signup {
+  @include button_general(5vmax);
+  color: white;
+}
+
+.main__landing__title_highlight {
+  color: $danger_color;
+}

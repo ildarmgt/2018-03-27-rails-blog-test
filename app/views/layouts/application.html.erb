@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Badchat</title>
+    <title>Bad Blogs</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,22 +9,61 @@
   </head>
 
   <body>
-    <nav>
-      <%= link_to 'badchat.io', root_path %>
-      <% if !user_signed_in? %>        
-        <%= link_to 'Sign In', user_session_path %>
-        <%= link_to 'Sign Up', new_user_registration_path %>
-      <% else %>
-        <%= link_to 'Create blog', new_blog_path %>      
-        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
-      <% end %>
-    </nav>
 
-    <br><br>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <div class="nav">
+      <!-- general links on left side -->
+      <div class="nav__left">
+        <% if params[:action] != 'landing' %>
+          <%= link_to 'BadBlogs.io', root_path, :class => "nav__left__option bold button_down" %>
+        <% end %>
+        <%= link_to 'Blogs', blogs_path, :class => "nav__left__option button_down" %>
+        <%= link_to 'People', users_path, :class => "nav__left__option button_down" %>
+      </div>
 
+      <!-- account based options on right side -->
+      <div class="nav__account">
+        <% if !user_signed_in? %>
+          <!-- if not logged in -->
+
+          <% if !(params[:controller] == "devise/registrations" && (params[:action] == 'create' || params[:action] == 'new')) %>
+            
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "nav__account__option") do |f| %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "nav__account__form__field", placeholder: "email" %>
+              <%= f.password_field :password, autocomplete: "off", :class => "nav__account__form__field", placeholder: "pass" %>
+              <%= f.submit " > ", :class => "nav__account__option_signin button_down" %>            
+            <% end %>
+            
+          <% end %>
+
+        <% else %>
+          <!-- if logged in -->
+
+          <%= link_to current_user.username, user_path(current_user.id), :class => "nav__account__option button_down bold" %>
+          <%= link_to edit_user_registration_path, :class => "nav__account__option button_down nav__account__option_edit_wrapper" do %>
+            <div class="nav__all__option_edit_image">edit</div>
+          <% end %>
+          <%= link_to 'logout', destroy_user_session_path, method: :delete, :class => "nav__account__option button_down" %>
+
+        <% end %>
+      </div>
+    </div>
+
+    <!-- key can be "notice" or "alert" -->
+    <% flash.each do |key, value| %>
+      <div class="<%= key %>">
+        <%= value %>
+      </div>
+    <% end %>
+
+    <!-- render offset for navbar -->
+    <div class="spacer"></div>
+
+    <!-- where everything renders -->
+    <div class="main">
+      
+      <%= yield %>
+
+    </div>
     
     
   </body>

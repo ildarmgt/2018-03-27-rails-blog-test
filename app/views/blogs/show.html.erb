@@ -1,27 +1,30 @@
-<h1> Recent Blogs </h1>
+<h1> Blog show </h1>
 
-<% @page_user.blogs.all.reverse.each do |ea_post| %>
 
-  <%= ea_post.user.username %> / 
-  <%= ea_post.created_at.to_formatted_s(:long) %><br>
-  <%= ea_post.content %>
-  <br><br>
+<%= @page_blog.user.username %> / 
+<%= @page_blog.created_at.to_formatted_s(:long) %><br>
+<%= @page_blog.content %>
 
-  <ul>
+<ul>
     
-    <% ea_post.comments.all.reverse.each do |ea_comment| %>
-    <li>
-      <%= ea_comment.user.username %> / 
-      <%= ea_comment.created_at.to_formatted_s(:long) %><br>
-      <%= ea_comment.content %><br>
-      <br>
-    </li>
+  <% @page_blog.comments.all.reverse.each do |ea_comment| %>
+  <li>
+    <%= ea_comment.user.username %> / 
+    <%= ea_comment.created_at.to_formatted_s(:long) %><br>
+    <%= ea_comment.content %><br>
+    <br>
+  </li>
+  <% end %>
+  
+  <li>
+    <% if @page_blog %>
+      <%= form_for @page_blog.comment.new do |f| %>
+        <%= f.text_field :content %>
+        <%= f.submit %>
+      <% end %>
     <% end %>
+  </li>
+
+  
     
-  </ul>
-
-  <br><br><br>
-
-
-
-<% end %>
+</ul>

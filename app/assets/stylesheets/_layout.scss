@@ -1,0 +1,149 @@
+// * {
+//   border: 1px solid red;
+// }
+
+.nav {
+  position: fixed;
+  display: block;
+  background-color: $dark_color;
+  background-color: rgba($dark_color, 0.9);
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  z-index: 100;
+  white-space:nowrap;
+  overflow: none;
+  height: 2.3vmax;
+}
+
+
+.nav__account {
+  float: right;
+  position: relative;
+  // display: inline-block;
+
+  // width: 20vmax;
+  right: 0;
+  vertical-align: top;
+  white-space:nowrap;
+  overflow: none;
+}
+
+.nav__left {
+  display: inline-block;
+  vertical-align: top;
+  white-space:nowrap;
+  overflow: none;
+  // margin-bottom: 0.5vmax;
+}
+
+.nav__left__option {
+  @include general_text_menu_option;
+  margin: 0.1vmax;
+  margin-left: 0.5vmax;
+  padding: 0.1vmax;
+  padding-bottom: 0.3vmax;
+}
+
+.nav__account__option {
+  @include general_text_menu_option;
+  margin: 0.1vmax;
+  margin-right: 0.5vmax;
+  margin-bottom: 0.2vmax;
+  padding: 0.2vmax;
+  // margin-left: 0.2vmax;
+}
+
+.nav__account__option:hover,
+.nav__left__option:hover {
+  background-color: $quiet_color;
+}
+
+.nav__account__option_signin {
+  @include general_text_menu_option;
+  margin: 0.2vmax;
+  margin-right:0.2vmax;
+  margin-bottom: 0.2vmax;
+  padding: 0.2vmax 0.15vmax;
+  padding-top: 0vmax;
+  background-color: $quiet_color;
+  color: $dark_color;
+}
+
+
+.nav__account__form__field {
+  @include regular_textfield(1.45vmax);
+  border-bottom: 0.1vmax solid $quiet_color;
+  width: 15vmax;
+  color: $bright_highlight_color;
+  vertical-align: top;
+  margin: 0.1vmax;
+}
+
+::placeholder {
+  color: $quiet_color;
+}
+
+:-ms-input-placeholder {
+  color: $quiet_color;
+}
+
+::-ms-input-placeholder {
+  color: $quiet_color;
+}
+
+.main__title {
+
+}
+
+.main_signup {
+  
+}
+
+// * {
+//   border: 1px red solid;
+// } 
+
+
+.alert {
+  display: inline-block;
+  position: fixed;
+
+  right: 0.5vmax;
+  top: 2.7vmax;
+
+  background-color: $danger_color;
+  color: $background_color;
+
+  padding: 1vmax 2vmax;
+  border-radius: 0.5vmax;
+
+  animation: fadeinout 5s;
+  opacity: 0;
+}
+
+.notice {
+  display: inline-block;
+  position: fixed;
+
+  right: 0.5vmax;
+  top: 2.7vmax;
+
+  background-color: $dark_color;
+  color: $bright_highlight_color;
+
+  padding: 1vmax 2vmax;
+  border-radius: 0.5vmax;
+
+  animation: fadeinout 5s;
+  opacity: 0;
+}
+
+@keyframes fadeinout {
+  0% {opacity: 0;}
+  20% {opacity: 0.9;}
+  80% {opacity: 0.9;}
+  100% {opacity: 0;}
+} 

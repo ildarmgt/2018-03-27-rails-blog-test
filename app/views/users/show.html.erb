@@ -1,27 +1,195 @@
-<h1> Recent Blogs </h1>
 
-<% @page_user.blogs.all.reverse.each do |ea_post| %>
+<div class="main__profile">
 
-  <%= ea_post.user.username %> / 
-  <%= ea_post.created_at.to_formatted_s(:long) %><br>
-  <%= ea_post.content %>
-  <br><br>
+  <div class="main__profile__welcome">
+    Bad <span class="main__landing__title_highlight"><%= @page_user.username %></span> blogs
+  </div>
+  
+  <% if user_signed_in? %>
+    <!-- have to be signed in to post new blog -->
+    <%# current_user.id %>
+    <%# @page_user_id %>
 
-  <ul>
     
-    <% ea_post.comments.all.reverse.each do |ea_comment| %>
-    <li>
-      <%= ea_comment.user.username %> / 
-      <%= ea_comment.created_at.to_formatted_s(:long) %><br>
-      <%= ea_comment.content %><br>
-      <br>
-    </li>
+
+    <% if current_user.id == @page_user_id %>
+      <!-- have to be logged in on your user page to post new blog -->
+
+      <div class="main__profile__new">
+        <%= form_for Blog.new do |f| %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%# f.text_field :content %>
+          <%= f.text_area(:content, rows: 3, placeholder: 'new blog', class: "textarea_placeholder main__profile__new__text general__textarea__scrollbar", maxlength: 149) %>
+          <%= f.submit "Publish", class: 'main__profile__new__submit' %>
+        <% end %>
+      </div>
+    <% else %>
+      <!-- if not a match, it's someone elses page -->
+
     <% end %>
-    
-  </ul>
-
-  <br><br><br>
+  <% end %>
 
 
+  <% @page_user.blogs.all.reverse.each do |ea_blog| %>
+    <div class="main__profile__history">
+      <div class="main__profile__history__relative">
+        <div class="main__profile__history__timestamp"> 
+          <%= ea_blog.updated_at.to_formatted_s(:long) %>
+        </div>
+        <a href="/users/<%= ea_blog.user.id %>" class="main__profile__history__writers">
+          <%= ea_blog.user.username %>
+        </a>
+        
+      </div>
+      <%= form_for ea_blog, url: blog_path(ea_blog), html: {class: "main__profile__history__form"} do |f| %>
+        <%= f.text_area(:content, rows: 3, placeholder: 'editing blog', class: 'textarea_placeholder main__profile__history__content general__textarea__scrollbar', maxlength: 149, 'data-blogid'=>ea_blog.id ) %>
+        <div class="main__profile__history__buttons">
+          <% if (user_signed_in?) %>
 
-<% end %>
+            <div class="main__profile__history__buttons__start" data-blogid="<%=ea_blog.id%>">
+              <% if (ea_blog.user_id == current_user.id) %>
+                <div class="main__profile__history__content__start_edit">
+                  edit
+                </div>
+                <div class="main__profile__history__content_start_delete">
+                  delete
+                </div>
+              <% end %>
+
+              <div class="main__profile__history__content_start_reply" data-blogid="<%=ea_blog.id%>">
+                reply
+              </div>
+            </div>
+          <% end %>
+
+          <div class="main__profile__history__content_editchoice" data-blogid="<%=ea_blog.id%>">
+            <%= f.submit "update blog", class: 'main__profile__history__buttons__save_confirm' %>
+
+            <div class="main__profile__history__content_edit_cancel">
+              cancel
+            </div>
+          </div>
+
+          <div class="main__profile__history__content_deletechoice" data-blogid="<%=ea_blog.id%>">
+            <%= link_to 'confirm delete', '/blogs/' + ea_blog.id.to_s, method: :delete, class: "main__profile__history__buttons__delete_confirm" %>
+            <div class="main__profile__history__content_delete_cancel">
+              cancel
+            </div>
+          </div>
+        </div>
+      
+      
+      <% end %>
+
+      <ul>
+        <!-- new comment form at end of comments -->
+        <div class="main__profile__history__comments">
+          <% if user_signed_in? %>
+            <li class="main__profile__history__comments_new_li" data-blogid="<%=ea_blog.id%>">
+              <%= form_for Comment.new, html: {class: "main__profile__history__comments__form"} do |f| %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <%= f.hidden_field :blog_id, value: ea_blog.id %>
+                <%= f.text_area(:content, rows: 2, placeholder: 'new comment', class: "textarea_placeholder main__profile__history__comments__txtnew general__textarea__scrollbar", maxlength: 149) %>
+                <%= f.submit "publish comment", class: 'main__profile__history_comments__form_submit'%>
+              <% end %>
+            </li>
+          <% end %>
+
+          <% ea_blog.comments.all.reverse.each do |ea_comment| %>
+            <li class="main__profile__history__comments_li">
+              <div class="main__profile__history__comments_li_head">
+                <div class="main__profile__history__comments__timestamp">
+                  <%= ea_comment.updated_at.to_formatted_s(:long) %>
+                </div>
+                
+                <a href="/users/<%= ea_comment.user_id %>" class="main__profile__history__comments__writers">
+                  <%= ea_comment.user.username %>
+                </a>
+              </div>
+              <%= form_for ea_comment, url: comment_path(ea_comment), html: {class: "main__profile__history__comments__form"} do |f| %>
+                <%= f.text_area(:content, rows: 1, placeholder: 'editing comment', class: 'textarea_placeholder main__profile__history__comments__content general__textarea__scrollbar', maxlength: 149, 'data-commentid'=>ea_comment.id ) %>
+
+                <div class="main__profile__history__comments__buttons">
+                  <% if (user_signed_in?) %>
+        
+                    <!-- toggles on/off -->
+                    <div class="main__profile__history__comments__start" data-commentid="<%= ea_comment.id %>">
+                      <% if (ea_comment.user_id == current_user.id) %>
+                        <div class="main__profile__history__comments__start_edit">
+                          edit
+                        </div>
+                        <div class="main__profile__history__comments_start_delete">
+                          delete
+                        </div>
+                      <% end %>
+        
+                      <div class="main__profile__history__content_start_reply" data-blogid="<%=ea_blog.id%>">
+                        reply
+                      </div>
+                    </div>
+                  <% end %>
+        
+                  <!-- toggles on/off -->
+                  <div class="main__profile__history__comments_editchoice" data-commentid="<%=ea_comment.id%>">
+                    <%= f.submit "update blog", class: 'main__profile__history__comments__buttons__save_confirm' %>
+        
+                    <div class="main__profile__history__comments_edit_cancel">
+                      cancel
+                    </div>
+                  </div>
+        
+                  <!-- toggles on/off -->
+                  <div class="main__profile__history__comments_deletechoice" data-commentid="<%=ea_comment.id%>">
+                    <%= link_to 'confirm delete', '/comments/' + ea_comment.id.to_s, method: :delete, class: "main__profile__history__comments__buttons__delete_confirm" %>
+                    <div class="main__profile__history__comments_delete_cancel">
+                      cancel
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <%# f.submit "edit comment", class: 'main__profile__history__comments__content__btnsubmit'%>
+                <%# link_to 'Destroy', '/comments/' + ea_comment.id.to_s, method: :delete %>
+              <% end %>
+
+            </li>
+          <% end %>
+          
+        </div>
+        
+      </ul>
+
+    </div>
+
+
+
+  <% end %>
+
+  <% if @page_user.blogs.all.length == 0 %>
+    <br>
+    <div class="main__landing__title_highlight">
+      This user has no blogs.
+    </div>
+  <% end %>
+</div>
+
+<!-- div for javascript to find -->
+
+<div class="main__profile_loaded"></div>

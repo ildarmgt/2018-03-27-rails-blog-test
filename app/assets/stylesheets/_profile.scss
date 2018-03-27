@@ -1,0 +1,328 @@
+
+
+// *********************************************************************
+.textarea_placeholder::-webkit-input-placeholder {
+  @include editable-textarea-placeholder;
+}
+
+.textarea_placeholder:-moz-placeholder {
+  /* Firefox 18- */
+  @include editable-textarea-placeholder;
+}
+
+.textarea_placeholder::-moz-placeholder {
+  /* Firefox 19+ */
+  @include editable-textarea-placeholder;
+}
+
+// .main__profile__new__text::placeholder {
+//   @include editable-textarea-placeholder;
+// }
+
+.general__textarea__scrollbar::-webkit-scrollbar {
+  @include editable-textarea-scrollbar;
+}
+
+.general__textarea__scrollbar::-webkit-scrollbar-track {
+  @include editable-textarea-scrollbar-track;
+}
+
+.general__textarea__scrollbar::-webkit-scrollbar-thumb {
+  @include editable-textarea-scrollbar-thumb;
+}
+
+.main__profile {
+  margin: 0 auto;
+  text-align: center;
+  width: 50vmax;
+}
+
+.main__profile__welcome {
+  @include page_title;
+  margin-bottom: 1vmax;
+  display: block;
+}
+
+.main__profile__new {
+  width: 100%; 
+  display: inline-block;
+  // margin-bottom: 2vmax;
+}
+
+.main__profile__new__text {
+  @include editable-textarea;
+}
+
+.main__profile__new__submit {
+  @include button_general;
+  margin: 1vmax;
+}
+
+
+
+.main__profile__history__writers {
+  @include author_links;
+  right: 2vmax;
+  top: 0;
+  display: inline-block;
+  position: absolute;
+  font-weight: bold;
+  color: $quiet_color;
+}
+
+.main__profile__history__timestamp {
+  @include post_timestamp;
+  left: 1vmax;
+  top: 0;
+  display: inline-block;
+  position: absolute;
+  color: $quiet_color;
+}
+
+.main__profile__history__content {
+  @include readable-textarea;
+  margin-top: 2vmax;
+  height: 100%;
+  resize: none;
+  overflow: auto;
+}
+
+
+
+.main__profile__history__relative {
+  position: relative;
+  display: block;
+}
+
+.main__profile__history {
+  width: 50vmax;
+  display: inline-block;
+  margin-top: 1vmax;
+}
+
+.main__profile__history__form {
+  width: 100%;
+  display: block;
+  position: relative;
+}
+
+.main__profile__history__content_edit {
+  @include button_general(1.5vmax);
+  background-color: $dark_color;
+  margin: 0.5vmax;
+  font-size: 1.3vmax;
+  position: absolute;
+  left: 1vmax;
+
+}
+
+.main__profile__history__comments__buttons__delete_confirm,
+.main__profile__history__content_delete {
+  @include button_general(1.5vmax);
+  background-color: $danger_color;
+  margin: 0.5vmax;
+  font-size: 1.3vmax;
+  position: absolute;
+  right: 1vmax;
+}
+
+.main__profile__history__comments__buttons, 
+.main__profile__history__buttons {
+  position: relative;
+  display: block;
+  height: 4vmax;
+  text-align: center;
+}
+
+
+.main__profile__history__buttons__start {
+  height: 2vmax;
+  // display: none;
+}
+
+.main__profile__history__comments_editchoice,
+.main__profile__history__content_editchoice {
+  height: 3vmax;
+  display: none;
+}
+
+.main__profile__history__comments_deletechoice, 
+.main__profile__history__content_deletechoice {
+  height: 3vmax;
+  display: none;
+}
+
+.main__profile__history__comments__start_edit, 
+.main__profile__history__content__start_edit {
+  @include button_general(1.3vmax);
+  background: none;
+  color: $dark_color;
+  margin: 0.1vmax;
+  font-size: 1.3vmax;
+  position: absolute;
+  right: 12vmax;  
+}
+
+.main__profile__history__comments_start_delete, 
+.main__profile__history__content_start_delete {
+  @include button_general(1.3vmax);
+  background: none;
+  color: $danger_color;
+  margin: 0.1vmax;
+  font-size: 1.3vmax;
+  position: absolute;
+  right: 6vmax;
+}
+
+.main__profile__history__content_start_reply {
+  @include button_general(1.3vmax);
+  background: none;
+  color: $quiet_color;
+  margin: 0.1vmax;
+  font-size: 1.3vmax;
+  position: absolute;
+  right: 1vmax;
+}
+
+.main__profile__history__comments__buttons__save_confirm,
+.main__profile__history__buttons__save_confirm {
+  @include button_danger(1.3vmax);
+  // background-color: $dark_color;
+  margin: 0.5vmax;
+  font-size: 1.3vmax;
+  position: relative;
+}
+
+.main__profile__history__comments_edit_cancel,
+.main__profile__history__content_edit_cancel {
+  @include button_general(1.3vmax);
+  margin: 0.5vmax;
+  font-size: 1.3vmax;
+  position: relative;
+}
+
+.main__profile__history__comments__buttons__delete_confirm,
+.main__profile__history__buttons__delete_confirm {
+  @include button_general(1.3vmax);
+  background-color: $danger_color;
+  margin: 0.5vmax;
+  font-size: 1.3vmax;
+  position: relative;
+}
+
+.main__profile__history__comments_delete_cancel, 
+.main__profile__history__content_delete_cancel {
+  @include button_general(1.3vmax);
+  margin: 0.5vmax;
+  font-size: 1.3vmax;
+  position: relative;
+}
+
+// .main__profile__warning {
+//   @include post_timestamp;
+// }
+
+.main__profile__history__comments {
+  // border: 1px red solid;
+  border-left: 0.2vmax solid $quiet_color;
+  border-left: 0.2vmax solid rgba($quiet_color, 0.5);
+  margin-left: 1vmax;
+  padding-left: 1vmax;
+  text-align: left;
+  
+}
+
+.main__profile__history__comments_new_li {
+  display: none;
+  position: relative;
+}
+
+.main__profile__history__comments__txtnew {
+  @include editable-textarea;
+  background-color: $bright_highlight_color;
+  height: 100%;
+  resize: vertical;
+  overflow: auto;
+}
+
+.main__profile__history__comments__form {
+  text-align: right;
+}
+
+.main__profile__history_comments__form_submit {
+  @include button_general(1.3vmax);
+  margin-top: 0.2vmax;
+}
+
+.main__profile__history__comments_li {
+  // border: 1px red solid;
+  text-align: left;
+  width: 100%;
+}
+
+.main__profile__history__comments__writers {
+  @include author_links;
+  // margin-left: 2vmax;
+  // right: 2vmax;
+  // top: 0;
+  // display: inline-block;
+  // position: absolute;
+  // font-weight: bold;
+  // color: $quiet_color;
+}
+
+.main__profile__history__comments__timestamp {
+  @include post_timestamp;
+  // margin-left: 1vmax;
+  // left: 1vmax;
+  // top: 0;
+  // display: inline-block;
+  // position: absolute;
+  // color: $quiet_color;
+}
+
+.main__profile__history__comments__content {
+  @include readable-textarea;
+  // margin-top: 2vmax;
+  height: 100%;
+  resize: none;
+  overflow: auto;
+  background: none;
+  // background-color: rgba($quiet_color, 0.5);
+  // border-top: 0.2vmax solid $quiet_color;
+  // border-top: 0.2vmax solid rgba($quiet_color, 0.5);
+}
+
+.main__profile__history__comments_li_head {
+  border-bottom: 0.2vmax solid $quiet_color;
+  border-bottom: 0.2vmax solid rgba($quiet_color, 0.5);
+  // background-color: $quiet_color;
+  display: inline-block;
+  padding-right: 1vmax;
+  padding-left: 2vmax;
+  // margin-left: -1vmax;
+}
+
+.main__profile__history__comments__content_editable, 
+.main__profile__history__content_editable {
+  @include editable-textarea;
+  background-color: $bright_highlight_color;
+  margin-top: 2vmax;
+  height: 100%;
+  resize: vertical;
+  overflow: auto;
+}
+
+.main__profile__new__submit:active,
+.main__profile__history_comments__form_submit:active,
+.main__profile__history__buttons__delete_confirm:active,
+.main__profile__history__content_delete_cancel:active,
+.main__profile__history__content_edit_cancel:active,
+.main__profile__history__buttons__save_confirm:active,
+.main__profile__history__content_start_delete:active,
+.main__profile__history__content_start_reply:active,
+.main__profile__history__comments__start_edit:active,
+.main__profile__history__comments_start_delete:active, 
+.main__profile__history__content__start_edit:active {
+  @include button_general_pressed;
+}

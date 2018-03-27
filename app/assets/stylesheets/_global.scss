@@ -1,0 +1,26 @@
+body {
+  color: $dark_color;
+  font-family: main_font;
+  font-size: 1.3vmax;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.button_down:active {
+  @include button_general_pressed;
+} 
+
+.spacer {
+  @include large_spacer(2.5vmax);
+  // background-color: red;
+}
+
+ul, li {
+  list-style-type: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+

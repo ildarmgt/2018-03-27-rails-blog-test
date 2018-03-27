@@ -1,0 +1,17 @@
+<div class="main__people">
+  <div class="main__people__title">
+    Browse other users
+  </div>
+  <div class="spacer">
+  </div>
+  
+  <% User.all.reverse.each do |ea_user| %>
+    <a class="main__people__user" href="/users/<%= ea_user.id %>">
+      <% if ea_user.username %>
+        <%= ea_user.username %>
+      <% else %>
+        <%= ea_user.email %>
+      <% end %>
+    </a>
+  <% end %>
+</div>
