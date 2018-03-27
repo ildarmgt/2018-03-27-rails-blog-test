@@ -17,5 +17,9 @@
 
 .main__people__user:hover {
   background-color: $bright_highlight_color;
-  color: $quiet_color;
+  color: $dark_color;
+}
+
+.main__people__user:active {
+  @include button_general_pressed;
 }
