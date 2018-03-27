@@ -28,3 +28,7 @@
   2. run `bundle install` to install necessary gems
   3. run `rails s` to start server
   4. visit `localhost:3000` to see the website
+
+### Login test account
+  email: admin@admin
+  pass: 123456
