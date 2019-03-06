@@ -1,5 +1,10 @@
 # README
 
+### Login test account
+  hosted website: https://hidden-dusk-42452.herokuapp.com/
+  email: tester@tester.com
+  pass: tester
+
 ### Ruby version
     created in ruby 2.5.0p0 (2017-12-25 revision 61468) [x86_64-linux]
 
@@ -28,7 +33,3 @@
   2. run `bundle install` to install necessary gems
   3. run `rails s` to start server
   4. visit `localhost:3000` to see the website
-
-### Login test account
-  email: admin@admin
-  pass: 123456
