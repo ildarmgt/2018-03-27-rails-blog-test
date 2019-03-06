@@ -2,7 +2,9 @@
 
 ### Login test account
   hosted website: https://hidden-dusk-42452.herokuapp.com/
+  
   email: tester@tester.com
+  
   pass: tester
 
 ### Ruby version
